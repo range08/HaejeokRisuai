@@ -42,7 +42,9 @@ describe("AzureStorage.loadCharacterAssetFields", () => {
     storage.getPool = async () => pool;
 
     await expect(storage.loadCharacterAssetFields("char-1")).resolves.toEqual({
-      customBackground: "asset://example/background.png",
+      assets: {
+        customBackground: "asset://example/background.png",
+      },
     });
   });
 });
