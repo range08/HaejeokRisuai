@@ -1348,7 +1348,14 @@ class AzureStorage extends SqlStorageBase {
       fields.image = core.image;
     for (const row of attrsRes.recordset) {
       const raw = row.value;
-      const parsed = typeof raw === "string" ? JSON.parse(raw) : raw;
+      let parsed = raw;
+      if (typeof raw === "string") {
+        try {
+          parsed = JSON.parse(raw);
+        } catch {
+          parsed = raw;
+        }
+      }
       fields[row.key] = decodePostgresJsonValue(parsed);
     }
     if (emotionsRes.recordset.length) {
