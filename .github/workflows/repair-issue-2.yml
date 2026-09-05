@@ -1,3 +1,4 @@
+# One-shot workflow: removed automatically after the verified patch is committed.
 name: repair-issue-2
 
 on:
